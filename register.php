@@ -2,13 +2,27 @@
 <html>
 <head>
     <link rel="stylesheet" href="assets/css/style.css">
-    <!-- place for ajax -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="assets/js/main.js"></script>
+    <title>Register</title>
 </head>
 <body>
     <div class="auth-container">
-        <h2 style="text-align:center;">Register</h2>
+        <h2 style="text-align:center">Register</h2>
+
+        <!-- --- FIX START: MESSAGE DISPLAY LOGIC --- -->
+        <?php
+        if (isset($_GET['err'])) {
+            if ($_GET['err'] == 'failed') {
+                echo '<p class="error">Database Error: Registration Failed.</p>';
+            }
+            if ($_GET['err'] == 'empty') {
+                echo '<p class="error">Please fill in all fields.</p>';
+            }
+        }
+        ?>
+        <!-- --- FIX END --- -->
+
         <form action="backend/auth.php" method="post" autocomplete="off">
             <div class="form-group">
                 <label>Role</label>
@@ -37,7 +51,7 @@
             
             <button type="submit" name="register" class="btn-primary btn-block">Register</button>
         </form>
-        <p style="text-align:center;"><a href="login.php">Login here</a></p>
+        <p style="text-align:center"><a href="login.php">Login here</a></p>
     </div>
 </body>
 </html>
